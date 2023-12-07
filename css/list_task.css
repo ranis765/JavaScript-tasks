@@ -12,7 +12,11 @@ ul{
     gap: 10px;
 }
 
-
+.board-app__list{
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+}
 .box-backlog__item li{
     box-shadow: 5px 0px 0px 0px rgb(211, 211, 211) inset;
 }
@@ -25,13 +29,19 @@ ul{
 .box-del__item li{
     box-shadow: 5px 0px 0px 0px rgb(252, 176, 176) inset;
 }
-
+.box
+{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 .box h2{
     padding: 8px 12px;
     border-radius: 8px;
     margin-bottom: 20px;
     max-width: fit-content;
+    
 }
 .box-backlog{
     background-color: rgb(211, 211, 211);
