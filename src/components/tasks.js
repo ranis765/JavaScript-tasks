@@ -1,46 +1,14 @@
-function createTaskComponentTemplate(id, text, taskType) {
-	return (
-	  changeTaskText(text, taskType)
-	);
+import { AbstractComponent } from "./abstractComp.js";
+
+export class TaskComponent extends AbstractComponent {
+  constructor({ id, title, status }) {
+    super();
+    this._id = id;
+    this._status = status;
+    this._title = title;
   }
-  
-  const changeTaskText = (text, taskType) => {
-  
-	return(`
-	<li class="Task" id= "${taskType}">${text}`)
-  }
-  
-  
-  export class CreateTaskComponent {
-  
-  #id = null;
-  #status = null;
-  #title = null;
-  
-  
-  constructor({id, title,status}){
-	this.#id = id;
-	this.#status = status;
-	this.#title = title;
-  }
-  
-  
+
   getTemplate() {
-	return createTaskComponentTemplate(this.#id, this.#title, this.#status);
+    return `<li>${this._title}</li>`;
   }
-  
-  
-  getElement() {
-	if (!this.element) {
-	  this.element = createElement(this.getTemplate());
-	}
-  
-  
-	return this.element;
-  }
-  
-  
-  removeElement() {
-	this.element = null;
-  }
-  }
+}

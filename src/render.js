@@ -9,9 +9,7 @@ const RenderPosition = {
   function createElement(template) {
     const newElement = document.createElement('div');
     newElement.innerHTML = template;
-  
-  
-    return newElement.firstElementChild;
+      return newElement.firstElementChild;
   }
   
   
