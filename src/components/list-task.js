@@ -8,9 +8,8 @@ export class TaskListComponent extends AbstractComponent {
   }
 
   getTemplate() {
-    return `<div class="box ${this._status}">
-      <h2>${this._status}</h2>
-        <ul></ul>
-  </div>`;
+    return `<div class="tab-content ${this._status}">
+      <p>${this._status}</p>
+  </div>`
   }
 }
