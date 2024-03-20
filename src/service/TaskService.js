@@ -1,6 +1,6 @@
 import { tasks } from "../mock/task.js";
 import { Constanats } from "../const.js";
-import { generateId } from "./generID.js";
+import { generateId } from "./generateId.js";
 export class TasksService {
   #boardTasks = tasks;
 
@@ -16,5 +16,4 @@ export class TasksService {
     task.status = Constanats.Status.BACKLOG;
     this.#boardTasks.push(task);
   }
-  
 }

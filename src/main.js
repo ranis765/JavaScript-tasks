@@ -1,13 +1,13 @@
-import { HeaderComponent } from './components/header-component.js';
-import { render, RenderPosition } from './render.js';
-import { FormAddTaskComponent } from './components/form-add-task-component.js';
-import { ListBoardComponent} from './components/board-task.js';
-import { TaskListComponent } from './components/list-task.js';
-import { TaskComponent } from './components/tasks.js';
-import { TasksService } from './service/TaskService.js';
+import { HeaderComponent } from "./components/headerComponent.js";
+import { render, RenderPosition } from "./render.js";
+import { FormAddTaskComponent } from "./components/addTaskComponent.js";
+import { ListBoardComponent } from "./components/listBoardContainer.js";
+import { TaskComponent } from "./components/taskComponent.js";
+import { TasksService } from "./service/TaskService.js";
 import { Constanats } from "./const.js";
-import { EmptyTasksComponent } from "./components/emptyComponent.js";
-import { DelBtnComponent } from "./components/delbuttonComponent.js";
+import { TaskListComponent } from "./components/taskListComponent.js";
+import { EmptyTasksComponent } from "./components/emptyTasksComponent.js";
+import { DelBtnComponent } from "./components/delBtnComponent.js";
 const bodyElement = document.querySelector(".board-app");
 const addTaskElement = document.querySelector(".addtask-app");
 
@@ -83,7 +83,7 @@ function renderTaskBoard(taskService, container) {
               taskListComponent.getElement().querySelector("ul")
             );
 
-            e.classList.add("disabled");
+            e.target.classList.add("disabled");
           });
       }
     }
