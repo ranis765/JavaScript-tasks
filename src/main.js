@@ -8,6 +8,8 @@ import { Constanats } from "./const.js";
 import { TaskListComponent } from "./components/taskListComponent.js";
 import { EmptyTasksComponent } from "./components/emptyTasksComponent.js";
 import { DelBtnComponent } from "./components/delBtnComponent.js";
+import { createTask, myData } from "../src/api.js"
+import { deleteTask } from "../src/api.js";
 const bodyElement = document.querySelector(".board-app");
 const addTaskElement = document.querySelector(".addtask-app");
 
@@ -16,17 +18,26 @@ render(new HeaderComponent(), bodyElement, RenderPosition.BEFOREBEGIN);
 const formAddTaskComponent = new FormAddTaskComponent();
 render(formAddTaskComponent, addTaskElement);
 
-formAddTaskComponent.setAddTaskHandler((taskTitle) => {
-  const newTask = { title: taskTitle };
+formAddTaskComponent.setAddTaskHandler((title) => {
+  const newTask = { title: title };
+
   taskService.create(newTask);
+
+  const status = "backlog"
+  const task = { title, status }
+  //console.log(task);
+  createTask(task)
   refreshTaskBoard();
 });
+
 function refreshTaskBoard() {
   taskBoardContainer.getElement().innerHTML = "";
   renderTaskBoard(taskService, taskBoardContainer);
 }
 const taskBoardContainer = new ListBoardComponent();
 render(taskBoardContainer, addTaskElement);
+
+
 
 const taskService = new TasksService();
 
@@ -41,7 +52,9 @@ function renderTaskBoard(taskService, container) {
 
     const statusLabel = Object.values(Constanats.StatusLabel)[i];
     const taskListElement = taskListComponent.getElement().querySelector("h2");
+
     taskListElement.textContent = statusLabel;
+
 
     if (tasksByStatus.length) {
       renderTaskList(tasksByStatus, taskListComponent);
@@ -49,23 +62,33 @@ function renderTaskBoard(taskService, container) {
       const emptyComponent = new EmptyTasksComponent();
       const taskListContainer = taskListComponent.getElement();
       render(emptyComponent, taskListContainer);
+
     }
 
     if (Constanats.Status.DEL == status) {
+
       const isEmpty =
         tasksByStatus.filter((p) => p.status == Constanats.Status.DEL)
           .length === 0;
       const delBtnComponent = new DelBtnComponent(taskService);
 
+
       if (!isEmpty) {
         render(
           delBtnComponent,
           taskListComponent.getElement().querySelector("ul")
+
         );
+
 
         document
           .querySelector(".box-del__item")
           .addEventListener("click", (e) => {
+            const deldata = myData.filter(item => item.status == "delete");
+
+            const ids = deldata.map(obj => obj._id);
+            console.log(ids);
+            deleteTask(ids)
             e.target.parentElement.querySelectorAll("li").forEach((li) => {
               li.remove();
             });
@@ -73,6 +96,8 @@ function renderTaskBoard(taskService, container) {
             e.target.parentElement.querySelector(".box-del__item").remove();
 
             const emptyComponent = new EmptyTasksComponent();
+
+
 
             render(
               emptyComponent,
@@ -103,3 +128,5 @@ function renderTask(task, container) {
   const taskComponent = new TaskComponent(task);
   render(taskComponent, container);
 }
+
+

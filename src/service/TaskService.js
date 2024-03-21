@@ -1,18 +1,25 @@
-import { tasks } from "../mock/task.js";
+
 import { Constanats } from "../const.js";
-import { generateId } from "./generateId.js";
+
+import { myData } from '../api.js';
+
+
+ // Ваши данные
 export class TasksService {
-  #boardTasks = tasks;
+
+  
+  #boardTasks = myData;
 
   getBoardTasks() {
     return this.#boardTasks;
+    
   }
 
   getTasksByStatus(status) {
-    return this.#boardTasks.filter((task) => task.status === status);
+    return this.#boardTasks.filter((data) => data.status === status);
   }
   create(task) {
-    task.id = generateId();
+    
     task.status = Constanats.Status.BACKLOG;
     this.#boardTasks.push(task);
   }

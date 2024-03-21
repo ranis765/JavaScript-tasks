@@ -24,7 +24,7 @@ date.forEach((date) => {
     boardContainer.getElement().querySelector(".tab-content")
   );
   boardContainer.setHandler();
-  console.log(date);
+  
 });
 
 

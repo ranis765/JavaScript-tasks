@@ -29,7 +29,7 @@ export class ContentComponent extends AbstractComponent {
     accordion.addEventListener("click", (event) => {
       if (event.target.classList.contains("tab-button")) {
         const content = accordion.querySelector(".tab-content");
-        console.log("done");
+        
         content.style.display =
           content.style.display === "block" ? "none" : "block";
       }

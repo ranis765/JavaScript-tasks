@@ -1,5 +1,6 @@
 import { AbstractComponent } from "../abstractComponent.js";
 
+
 export class FormAddTaskComponent extends AbstractComponent {
   getTemplate() {
     return `<div class='addtask'>
@@ -18,10 +19,12 @@ export class FormAddTaskComponent extends AbstractComponent {
       .addEventListener("click", (e) => {
         e.preventDefault();
         const inputElement = this.getElement().querySelector("#taskInput");
-        const taskTitle = inputElement.value.trim();
+        const title = inputElement.value.trim();
         const er = document.querySelector(".error");
-        if (taskTitle) {
-          handler(taskTitle);
+        if (title) {
+         
+          handler(title);
+          
           inputElement.value = "";
           er.style.display = "none";
         } else {

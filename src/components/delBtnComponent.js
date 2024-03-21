@@ -1,4 +1,5 @@
 import { AbstractComponent } from "../abstractComponent.js";
+import { myData } from '../api.js';
 
 export class DelBtnComponent extends AbstractComponent {
   getTemplate() {
