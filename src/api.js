@@ -24,7 +24,7 @@ const fetchData = async () => {
 }
 
 export const myData = await fetchData();
-//console.log(myData); 
+
 
 export const createTask = task => {
 	axios
@@ -39,13 +39,11 @@ export const createTask = task => {
 
 
 export const deleteTask = (id) => {
-	console.log("00",id);
+	console.log("00", id);
 	axios
-		.delete('http://localhost:3001/tasks/delete', id)
+		.delete('http://localhost:3001/tasks/del', { data: { id } })
 		.then(response => {
-
 			console.log(`DELETE: user is removed`, id)
-
 		})
 		.catch(error => console.error(error))
 }

@@ -25,7 +25,7 @@ formAddTaskComponent.setAddTaskHandler((title) => {
 
   const status = "backlog"
   const task = { title, status }
-  //console.log(task);
+ 
   createTask(task)
   refreshTaskBoard();
 });
@@ -85,9 +85,9 @@ function renderTaskBoard(taskService, container) {
           .querySelector(".box-del__item")
           .addEventListener("click", (e) => {
             const deldata = myData.filter(item => item.status == "delete");
-
+           
             const ids = deldata.map(obj => obj._id);
-            console.log(ids);
+      
             deleteTask(ids)
             e.target.parentElement.querySelectorAll("li").forEach((li) => {
               li.remove();
